@@ -1,0 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+int fac1(int n)
+{
+	if (n == 1)
+		return 1;
+	else
+	{
+		return n*fac1(n - 1);
+	}
+}
+
+int fac2(int n)
+{
+	int t = n;
+	while (n != 1)
+	{
+		t = t*(n - 1);
+		n = n - 1;
+	}
+	return t;
+}
+
+int main()
+{
+	int n = 0;
+	printf("please input a number:\n");
+	scanf("%d", &n);
+	int ret = fac2(n);
+	printf("%d\n", ret);
+
+	return 0;
+}
