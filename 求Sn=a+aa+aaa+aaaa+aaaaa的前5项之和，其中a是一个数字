@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int main()
+{
+
+	int a = 2;
+	int i = 0;
+	int Sn = 0;
+	
+	int j = a;
+	for (i = 0; i < 5; i++)
+	{
+		Sn = Sn + j;
+		
+		j = j * 10 + a;
+		
+	}
+	printf("%d\n", Sn);
+	return 0;
+
+}
