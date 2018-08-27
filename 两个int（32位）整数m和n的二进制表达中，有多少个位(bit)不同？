@@ -1,0 +1,22 @@
+//输入例子: 
+//1999 2299 
+//输出例子:7
+#include<stdio.h>
+
+
+
+int main()
+{
+	int m = 1999;
+	int n = 2299;
+	int M = 0;
+	int num = 0;
+	M = m^n;
+	while (M)
+	{
+		M &= (M - 1);
+		num++;
+	}
+	printf("%d\n", num);
+	return 0;
+}
