@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main()
+{
+	int num = 153;
+	int n = 0;
+	int m = 0;
+	int t = 0;
+	n = num / 100;
+	m = (num - 100) / 10;
+	t = num - n * 100 - m * 10;
+	printf("%d\n%d\n%d\n", n, m, t);
+
+	return 0;
+}
