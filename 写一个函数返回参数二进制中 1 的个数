@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int count_one_bits(unsigned int value)
+{
+	int count = 0;
+	while (value)
+	{
+		if (value % 2 == 1)
+		{
+			count++;
+		}
+		value = value / 2;
+	}
+
+	return count;
+}
+
+int main()
+{
+	int value = 0;
+	printf("请输入一个数：\n");
+	scanf_s("%d", &value);
+	int ret = count_one_bits(value);
+	printf("%d", ret);
+
+	return 0;
+}
