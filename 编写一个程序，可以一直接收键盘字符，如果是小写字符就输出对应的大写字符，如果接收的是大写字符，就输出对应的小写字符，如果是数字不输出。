@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int main()
+{
+	int t = 0;
+	printf("请输入一个字符\n");
+	t = getchar();
+	if (t >= 'a'&&t <= 'z')
+	{
+		putchar(t - 32);
+	}
+	if (t >= 'A'&&t <='Z')
+	{
+		putchar(t + 32);
+	}
+	if (t >= 0 && t <= 9)
+	{
+		;
+	}
+
+	return 0;
+}
