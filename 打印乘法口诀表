@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int main()
+{
+	int line;
+	printf("请输入一个数：\n");
+	scanf("%d", &line);
+	int i = 1;
+	int j = 1;
+	int sum = 0;
+	for (i = 1; i <= line; i++)
+	{
+		for (j = 1; j <= line; j++)
+		{
+			sum = i*j;
+			printf("%d*%d=%d\t", i, j, sum);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
