@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+void  Swap(int *a, int *b)
+{
+	int p = 0;
+	p = *a;
+	*a = *b;
+	*b = p;
+}
+
+int main()
+{
+	int n = 10;
+	int m = 20;
+	Swap(&n, &m);
+	printf("n=%d m=%d\n", n, m);
+
+	return 0;
+}
