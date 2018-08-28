@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+int main()
+{
+	//0表示不是凶手
+	//1表示是凶手
+	int A = 0, B = 0, C = 0, D = 0;
+	int FD;//因为C和D的供词是对立的，FD表示对立
+	int i;
+	for (i = 1; i < 5; i++)
+	{
+		if (i == 1)//A在说谎
+		{
+			A = 1; C = 1; FD = 1; D = 0;
+		}
+		if (i == 2)//B在说谎
+		{
+			A = 0; C = 0; FD = 1; D = 0;
+		}
+		if (i == 3)//C在说谎
+		{
+			A = 0; C = 1; FD = 0; D = 0;
+		}
+		if (i == 4)//D在说谎
+		{
+			A = 0; C = 1; FD = 0; D = 1;
+		}
+		if (((A + B + C + D) == 1) && (FD == D))//只有一个人是凶手，所以当和为1时就能找到凶手，FD==D是为了排除D是D不是的矛盾情况
+		{
+			printf("A=%d B=%d C=%d D=%d\n", A, B, C, D);
+		}
+	}
+
+	return 0;
+}
