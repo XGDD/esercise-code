@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+int Leapyear(int year)
+{
+	int ret;
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+	{
+		ret = 1;
+	}
+	else
+	{
+		ret = 0;
+	}
+	return ret;
+	
+}
+
+int main()
+{
+	int ret = 0;
+	int year;
+	printf("请输入年份：\n");
+	scanf_s("%d", &year);
+	Leapyear(year);
+	if (ret==1)
+	{
+		printf("是闰年\n");
+	}
+	else
+	{
+		printf("不是闰年\n");
+	}
+
+	return 0;
+}
