@@ -1,0 +1,63 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+#include<stdarg.h>
+#include<assert.h>
+int fib(int n)
+{
+	if (n / 10 == 0)
+	{
+		putchar((n % 10) + '0');
+	}
+	else
+	{
+		fib(n / 10);
+		putchar((n%10) + '0');
+	}
+
+}
+
+int *print(const char *format, ...)
+{
+	assert(format);
+	va_list arg;
+	va_start(arg, format);
+	const char *start = format;
+	char *tmp = NULL;
+	char arr[10] = { 0 };
+	int i = 0;
+	int t = 0;
+	while (*start)
+	{
+		switch (*start)
+		{
+		case 's':
+		{
+					tmp = va_arg(arg, int);//取下一个参数的地址，因为这个是字符串
+					while (*tmp)
+					{
+						putchar(*tmp);
+						tmp++;
+					}
+					break;
+		}
+		case 'c':
+			putchar(va_arg(arg, char));//取下一个参数的字符，并打印
+			break;
+		case 'd':
+			fib(va_arg(arg, int));
+			break;
+		}
+		start++;
+		continue;
+	}
+	va_end(arg);
+	return arr[i];
+}
+
+int main()
+{
+	print("s ccc d.\n", "hello", 'b', 'i', 't', 100);
+
+	return 0;
+}
