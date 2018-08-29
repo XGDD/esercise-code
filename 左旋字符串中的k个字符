@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+void Lev(char arr[4], int k)//左旋函数
+{
+	int i = 0;
+	int j = 0;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	for (i = 0; i < k; i++)
+	{
+		char tmp = arr[0];
+		for (j = 0; j < sz - 1; j++)
+		{
+			arr[j] = arr[j + 1];
+		}
+		arr[sz - 1] = tmp;
+	}
+
+	
+}
+
+int main()
+{
+	char arr[4] = { 'A', 'B', 'C', 'D' };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	int k = 0;
+	int i = 0;
+	printf("请输入k的值：\n");
+	scanf("%d", &k);
+	Lev(arr, k);
+	for (i = 0; i < sz; i++)
+	{
+		printf("%c ", arr[i]);
+	}
+
+	return 0;
+}
