@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+#include<stdarg.h>
+
+int average(int n, ...)
+{
+	va_list arg;
+	int i = 0;
+	int sum = 0;
+	va_start(arg, n);
+	for (i = 0; i < n; i++)
+	{
+		sum += va_arg(arg, int);
+	}
+	return sum / n;
+	va_end(arg);
+}
+
+int main()
+{
+	int a = 2;
+	int b = 5;
+	int c = 7;
+	int avg = average(3, a, b, c);
+	printf("avg = %d\n", avg);
+
+	return 0;
+}
