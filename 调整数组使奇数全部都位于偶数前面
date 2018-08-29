@@ -1,0 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+void Exchange(int *arr1, int sz)
+{
+	int i = 0;
+	int j = sz - 1;
+	for (i = 0; i != j; i++)
+	{
+		if (arr1[i] % 2 != 0)
+		{
+			continue;
+		}
+		else
+		{
+			int tmp = arr1[i];
+			arr1[i] = arr1[j];
+			arr1[j] = tmp;
+			if (arr1[i] % 2 == 0)
+			{
+				j--;
+				i--;
+			}
+		}
+	}
+}
+
+int main()
+{
+	int arr1[] = { 1, 2, 3, 4, 6, 7, 9 };
+	int sz = sizeof(arr1) / sizeof(arr1[0]);
+	Exchange(arr1, sz);
+	int i = 0;
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr1[i]);
+	}
+
+	return 0;
+}
