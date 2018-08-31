@@ -1,0 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+#include<assert.h>
+
+char *my_strcpy(char *dest, const char *src)
+{
+	char *ret = dest;
+	assert(dest);
+	assert(src);
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return ret;
+}
+
+int main()
+{
+	char s1[20];
+	char *s2 = "hello world!";
+	printf("%s\n",my_strcpy(s1, s2));
+
+	return 0;
+}
