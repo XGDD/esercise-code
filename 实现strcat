@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+#include<assert.h>
+
+char *my_stract(char *dest, const char *src)
+{
+	char *ret = dest;
+	assert(dest);
+	assert(src);
+	while (*dest)
+	{
+		dest++;
+	}
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return ret;
+}
+
+int main()
+{
+	char s1[20] = "hello ";
+	char *s2 = "world!";
+	printf("%s\n", my_stract(s1, s2));
+
+	return 0;
+}
