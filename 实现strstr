@@ -1,0 +1,32 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+char *my_strstr(const char *str, const char *substr)
+{
+	while (*str)
+	{
+		const char *s1 = str;
+		const char *s2 = substr;
+		while (*s1 && *s2 && *s1 == *s2)
+		{
+			s1++;
+			s2++;
+		}
+		if (*s2 == '\0')
+		{
+			return str;
+		}
+		str++;
+	}
+	return NULL;
+}
+
+int main()
+{
+	char *str = "ababaacde";
+	char *substr = "abaac";
+	printf("%s\n", my_strstr(str, substr));
+
+	return 0;
+}
