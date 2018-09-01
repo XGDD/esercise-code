@@ -1,19 +1,16 @@
-#include"IsStackValidOrder.h"
+#include"SharedStack.h"
 
 int main()
 {
-	int InArr[] = { 1, 2, 3, 4, 5 };
-	int OutArr[] = { 4, 5, 3, 2, 1 };
-	int ret = 0;
-	ret = IsStackValidOrder(InArr, 5, OutArr, 5);
-	if (1 == ret)
-	{
-		printf("∆•≈‰≥…π¶\n");
-	}
-	else
-	{
-		printf("∆•≈‰ ß∞‹\n");
-	}
+	SharedStack s;
+	SharedStackInit(&s);
+	SharedStackPush(&s, 1, 1);
+	SharedStackPush(&s, 2, 1);
+
+	SharedStackPush(&s, 6, 2);
+	SharedStackPush(&s, 7, 2);
+	SharedStackPop(&s, 2);
+
 
 	return 0;
 }
