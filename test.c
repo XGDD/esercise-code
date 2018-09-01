@@ -1,30 +1,18 @@
-#include"StackBy2Queue.h"
+#include"IsStackValidOrder.h"
 
 int main()
 {
-	StackBy2Queue q;
-	StackBy2QueueInit(&q);
-	StackBy2QueuePush(&q, 1);
-	StackBy2QueuePush(&q, 2);
-	StackBy2QueuePush(&q, 3);
-	StackBy2QueuePush(&q, 4);
-	printf("top = %d\n", StackBy2QueueTop(&q));
-	printf("size = %d\n", StackBy2QueueSize(&q));
-
-	StackBy2QueuePop(&q);
-	StackBy2QueuePop(&q);
-	StackBy2QueuePop(&q);
-	StackBy2QueuePop(&q);
-	printf("top = %d\n", StackBy2QueueTop(&q));
-	printf("size = %d\n", StackBy2QueueSize(&q));
-	int ret = StackBy2QueueEmpty(&q);
-	if (ret == 1)
+	int InArr[] = { 1, 2, 3, 4, 5 };
+	int OutArr[] = { 4, 5, 3, 2, 1 };
+	int ret = 0;
+	ret = IsStackValidOrder(InArr, 5, OutArr, 5);
+	if (1 == ret)
 	{
-		printf("Õ»Îª¿Õ\n");
+		printf("Æ¥Åä³É¹¦\n");
 	}
 	else
 	{
-		printf("Õ»²»Îª¿Õ\n");
+		printf("Æ¥ÅäÊ§°Ü\n");
 	}
 
 	return 0;

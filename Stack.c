@@ -1,4 +1,4 @@
-#include"Stack.h"
+#include "Stack.h"
 
 void StackInit(Stack* ps)
 {
