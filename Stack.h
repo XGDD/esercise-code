@@ -22,4 +22,7 @@ int StackEmpty(Stack* ps);
 void Print(Stack* ps);
 SDataType StackTop(Stack* ps);
 
+
+
+
 #endif //__STACK_H__

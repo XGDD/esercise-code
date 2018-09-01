@@ -1,43 +1,23 @@
-#include"Stack.h"
-
-void StackPush_test()
-{
-	int sz = 0;
-	Stack s;
-	StackInit(&s);
-	StackPush(&s, 1);
-	StackPush(&s, 2);
-	StackPush(&s, 3);
-	StackPush(&s, 4);
-	sz = StackSize(&s);
-	printf("%d\n", sz);
-	StackPop(&s);
-	sz = StackSize(&s);
-	printf("%d\n", sz);
-	Print(&s);
-}
-
-void StackEmpty_test()
-{
-	Stack s;
-	int ret = 0;
-	StackInit(&s);
-	StackPush(&s, 1);
-	StackPush(&s, 2);
-	StackPush(&s, 3);
-	StackPush(&s, 4);
-	ret = StackEmpty(&s);
-	if (ret)
-		printf("Õ»Îª¿Õ\n");
-	else
-	{
-		printf("Õ»²»Îª¿Õ\n");
-	}
-}
+#include"MinStack.h"
 
 int main()
 {
-	//StackPush_test();
-	StackEmpty_test();
+	MinStack s;
+	MinStackInit(&s);
+	MinStackPush(&s, 1);
+	MinStackPush(&s, 2);
+	MinStackPush(&s, 3);
+	MinStackPush(&s, 4);
+	printf("top = %d\n", MinStackTop(&s));
+	printf("size = %d\n", MainSatckSize(&s));
+	printf("min = %d\n", MinStackMin(&s));
+
+	MinStackPop(&s);
+	MinStackPush(&s, 0);
+	MinStackPush(&s, 4);
+	printf("top = %d\n", MinStackTop(&s));
+	printf("size = %d\n", MainSatckSize(&s));
+	printf("min = %d\n", MinStackMin(&s));
+
 	return 0;
 }
