@@ -1,0 +1,268 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct person
+{
+	char name[32];
+	char phone[12];
+	char gender[5];
+	unsigned char age[4];
+	char adress[100];
+	int num;
+	struct person *next;
+}person;
+
+void menu()
+{
+	printf("*********************************\n");
+	printf("*** 1.添加             2.删除 ***\n");
+	printf("*** 3.查找             4.修改 ***\n");
+	printf("*** 5.显示             6.清空 ***\n");
+	printf("*** 7.排序             0.退出 ***\n");
+	printf("***          8.保存           ***\n");
+	printf("*********************************\n");
+}
+
+
+void show(struct person *phead)
+{
+	while (phead != NULL)
+	{
+		printf("%s\n", phead->name);
+		phead = phead->next;
+	}
+}
+
+void find(struct person *phead)
+{
+	show(phead);
+	printf("name:");
+	char name[32];
+	scanf("%s", name);
+	struct person *cur = phead;
+	while (cur != NULL)
+	{
+		if (strcmp(cur->name, name) == 0)
+		{
+			printf("%s %s\n", cur->name, cur->phone);
+			break;
+		}
+		cur = cur->next;
+	}
+	if (cur == NULL)
+	{
+		printf("查无此人\n");
+	}
+}
+
+void insert(struct person **ph)
+{
+	struct person *p = malloc(sizeof(struct person));
+	printf("name:");
+	scanf("%s", p->name);
+	printf("phone:");
+	scanf("%s", p->phone);
+	printf("gender:");
+	scanf("%s", p->gender);
+	printf("age:");
+	scanf("%s", p->age);
+	printf("adress:");
+	scanf("%s", p->adress);
+	p->next = NULL;
+	p->num++;
+	if (*ph == NULL)
+	{
+		*ph = p;
+	}
+	else
+	{
+		struct person *cur = *ph;
+		while (cur->next != NULL)
+		{
+			cur = cur->next;
+		}
+		cur ->next = p;
+	}
+}
+
+void erase(struct person **phead)
+{
+	printf("请输入要删除的人：");
+	char name[32];
+	scanf("%s", name);
+	struct person *pre = NULL;
+	struct person *cur = *phead;
+	while (cur != NULL)
+	{
+		if (strcmp(cur->name, name) == 0)
+		{
+			break;
+		}
+		pre = cur;
+		cur = cur->next;
+	}
+	if (pre == NULL)//第一个节点为空
+	{
+		*phead = cur->next;//让头指针指向第二个节点
+		free(cur);
+	}
+	else
+	{
+		if (cur != NULL)
+		{
+			pre->next = cur->next;
+			free(cur);
+		}
+	}
+	cur->num--;
+}
+
+void empty(struct person *phead)
+{
+	struct person *cur = phead;
+	cur->num = 0;
+	while (phead)
+	{
+		phead = phead->next;
+		free(cur);
+		cur = phead;
+	}
+}
+
+void alter(struct person *phead)
+{
+	printf("请输入要修改的人的姓名:\n");
+	char name[32];
+	scanf("%s", name);
+	struct person *cur = phead;
+	while (cur != NULL)
+	{
+		if (strcmp(cur->name, name) == 0)
+		{
+			printf("请输入要修改的信息：\n");
+			printf("name:");
+			scanf("%s", name);
+			strcpy(cur->name, name);
+			char tp[12];
+			printf("phone:");
+			scanf("%s", tp);
+			strcpy(cur->phone, tp);
+			char ap[5];
+			printf("gender:");
+			scanf("%s", ap);
+			strcpy(cur->gender, ap);
+			unsigned char lp[4];
+			printf("age:");
+			scanf("%s", lp);
+			strcpy(cur->age, lp);
+			char dp[100];
+			printf("adress:");
+			scanf("%s", dp);
+			strcpy(cur->adress, dp);
+			break;
+		}
+		cur = cur->next;
+	}
+	if (cur == NULL)
+	{
+		printf("查无此人\n");
+	}
+}
+
+void sort(struct person *phead)
+{
+	struct person *cur = phead;
+	struct person *p = cur->next;
+	while (cur != NULL)
+	{
+		while (p != NULL)
+		{
+			if (strcmp(cur->name, p->name) > 0)
+			{
+				char tmp[32];
+				strcpy(tmp, cur->name);
+				strcpy(cur->name, p->name);
+				strcpy(p->name, tmp);
+				char tp[12];
+				strcpy(tp, cur->phone);
+				strcpy(cur->phone, p->phone);
+				strcpy(p->phone, tp);
+				char gp[5];
+				strcpy(gp, cur->gender);
+				strcpy(cur->gender, p->gender);
+				strcpy(p->gender, gp);
+				unsigned char ap[4];
+				strcpy(ap, cur->age);
+				strcpy(cur->age, p->age);
+				strcpy(p->age, ap);
+				char dp[100];
+				strcpy(dp, cur->adress);
+				strcpy(cur->adress, p->adress);
+				strcpy(p->adress, dp);
+			}
+			p = p->next;
+		}
+		cur = cur->next;
+	}
+}
+void filesave(person * person)
+{
+		FILE *pf = fopen("txl.txt", "w");
+		int i = 0;
+		fprintf(pf, "%d %d ", person->num, person->);
+		for (i = 0; i<person->num; i++)
+		{
+			fprintf(pf, "%s %s %d %s %s ", person->[i].name,
+				Pconer->adder[i].tele, Pconer->adder[i].add);
+		}
+		fclose(pf);
+}
+
+int main()
+{
+	FILE * pFile;
+	person phead;
+	pFile = fopen("txl.txt", "w");
+	struct person *head = NULL;
+	int num;
+	do
+	{
+		menu();
+		printf("请选择:\n");
+		scanf("%d", &num);
+		switch (num)
+		{
+		case 1:
+			insert(&head);
+			break;
+		case 2:
+			erase(&head);
+			break;
+		case 3:
+			find(head);
+			break;
+		case 4:
+			alter(head);
+			break;
+		case 5:
+			show(head);
+			break;
+		case 6:
+			empty(head);
+			break;
+		case 7:
+			sort(head);
+			break;
+		case 8:
+			filesave(head);
+		case 0:
+			printf("退出\n");
+			break;
+		}
+	} while (num);
+	filesave(&phead);
+	return 0;
+}
