@@ -1,23 +1,26 @@
-#include"MinStack.h"
+#include"QueueBy2Stack.h"
 
 int main()
 {
-	MinStack s;
-	MinStackInit(&s);
-	MinStackPush(&s, 1);
-	MinStackPush(&s, 2);
-	MinStackPush(&s, 3);
-	MinStackPush(&s, 4);
-	printf("top = %d\n", MinStackTop(&s));
-	printf("size = %d\n", MainSatckSize(&s));
-	printf("min = %d\n", MinStackMin(&s));
+	Queue q;
+	InitQueueBy2Stack(&q);
+	QueueBy2StackPush(&q, 1);
+	QueueBy2StackPush(&q, 2);
+	QueueBy2StackPush(&q, 3);
+	printf("Size = %d\n", QueueBy2StackSize(&q));
+	printf("Front = %d\n", QueueBy2StackTop(&q));
+	printf("Back = %d\n", QueueBy2StackBack(&q));
 
-	MinStackPop(&s);
-	MinStackPush(&s, 0);
-	MinStackPush(&s, 4);
-	printf("top = %d\n", MinStackTop(&s));
-	printf("size = %d\n", MainSatckSize(&s));
-	printf("min = %d\n", MinStackMin(&s));
+	QueueBy2StackPop(&q);
+	printf("Size = %d\n", QueueBy2StackSize(&q));
+	printf("Front = %d\n", QueueBy2StackTop(&q));
+	printf("Back = %d\n", QueueBy2StackBack(&q));
+
+	QueueBy2StackPush(&q, 4);
+	QueueBy2StackPush(&q, 5);
+	printf("Size = %d\n", QueueBy2StackSize(&q));
+	printf("Front = %d\n", QueueBy2StackTop(&q));
+	printf("Back = %d\n", QueueBy2StackBack(&q));
 
 	return 0;
 }
