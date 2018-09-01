@@ -1,28 +1,43 @@
-#include"Queue.h"
+#include"Stack.h"
+
+void StackPush_test()
+{
+	int sz = 0;
+	Stack s;
+	StackInit(&s);
+	StackPush(&s, 1);
+	StackPush(&s, 2);
+	StackPush(&s, 3);
+	StackPush(&s, 4);
+	sz = StackSize(&s);
+	printf("%d\n", sz);
+	StackPop(&s);
+	sz = StackSize(&s);
+	printf("%d\n", sz);
+	Print(&s);
+}
+
+void StackEmpty_test()
+{
+	Stack s;
+	int ret = 0;
+	StackInit(&s);
+	StackPush(&s, 1);
+	StackPush(&s, 2);
+	StackPush(&s, 3);
+	StackPush(&s, 4);
+	ret = StackEmpty(&s);
+	if (ret)
+		printf("栈为空\n");
+	else
+	{
+		printf("栈不为空\n");
+	}
+}
 
 int main()
 {
-	Queue q;
-	QueueInit(&q);
-	QueuePush(&q, 1);
-	QueuePush(&q, 2);
-	QueuePush(&q, 3);
-	QueuePop(&q);
-	QueuePop(&q);
-	QueuePop(&q);
-	PrintQueue(&q);
-	printf("%d\n", QueueSize(&q));
-	printf("%d\n", QueueFront(&q));
-	printf("%d\n", QueueBack(&q));
-	int ret = QueueIsEmpty(&q);
-	if (1 == ret)
-	{
-		printf("队空\n");
-	}
-	else
-	{
-		printf("队不空\n");
-	}
-
+	//StackPush_test();
+	StackEmpty_test();
 	return 0;
 }
