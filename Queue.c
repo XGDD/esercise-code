@@ -45,14 +45,23 @@ void QueuePop(Queue* q)
 	{
 		Del = q->Front->next;
 		q->Front->next = Del->next;
-		free(Del);
+		if (q->Front->next == q->Back)
+		{
+			q->Back = q->Front;
+			free(Del);
+			q->Front->next = NULL;
+		}
+		else
+		{
+			free(Del);
+		}
 	}
 }
 
 QDataType QueueFront(Queue* q)
 {
 	assert(q);
-	return q->Front->data;
+	return q->Front->next->data;
 }
 
 QDataType QueueBack(Queue* q)
@@ -74,7 +83,16 @@ int QueueSize(Queue* q)
 	return count;
 }
 
-int QueueIsEmpty(Queue* q);
+int QueueIsEmpty(Queue* q)
+{
+	{
+		assert(q);
+		if (q->Back == q->Front)//¶ÓÎª¿Õ£¬·µ»Ø1
+			return 1;
+		return 0;
+	}
+}
+
 QListNode* BuyQListNode(QDataType data)
 {
 	QListNode* NewNode = (QListNode*)malloc(sizeof(QListNode));

@@ -1,26 +1,31 @@
-#include"QueueBy2Stack.h"
+#include"StackBy2Queue.h"
 
 int main()
 {
-	Queue q;
-	InitQueueBy2Stack(&q);
-	QueueBy2StackPush(&q, 1);
-	QueueBy2StackPush(&q, 2);
-	QueueBy2StackPush(&q, 3);
-	printf("Size = %d\n", QueueBy2StackSize(&q));
-	printf("Front = %d\n", QueueBy2StackTop(&q));
-	printf("Back = %d\n", QueueBy2StackBack(&q));
+	StackBy2Queue q;
+	StackBy2QueueInit(&q);
+	StackBy2QueuePush(&q, 1);
+	StackBy2QueuePush(&q, 2);
+	StackBy2QueuePush(&q, 3);
+	StackBy2QueuePush(&q, 4);
+	printf("top = %d\n", StackBy2QueueTop(&q));
+	printf("size = %d\n", StackBy2QueueSize(&q));
 
-	QueueBy2StackPop(&q);
-	printf("Size = %d\n", QueueBy2StackSize(&q));
-	printf("Front = %d\n", QueueBy2StackTop(&q));
-	printf("Back = %d\n", QueueBy2StackBack(&q));
-
-	QueueBy2StackPush(&q, 4);
-	QueueBy2StackPush(&q, 5);
-	printf("Size = %d\n", QueueBy2StackSize(&q));
-	printf("Front = %d\n", QueueBy2StackTop(&q));
-	printf("Back = %d\n", QueueBy2StackBack(&q));
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	printf("top = %d\n", StackBy2QueueTop(&q));
+	printf("size = %d\n", StackBy2QueueSize(&q));
+	int ret = StackBy2QueueEmpty(&q);
+	if (ret == 1)
+	{
+		printf("Õ»Îª¿Õ\n");
+	}
+	else
+	{
+		printf("Õ»²»Îª¿Õ\n");
+	}
 
 	return 0;
 }
