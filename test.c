@@ -1,75 +1,60 @@
-#include"HLinkList.h"
+#include"DHLinkList.h"
 
-void HLinkListPushBack_test()
+void DHLinkListPushBack_test()
 {
 	Node *pHead;
-	HLinkListInit(&pHead);
-	HLinkListPushBack(pHead, 1);
-	HLinkListPushBack(pHead, 2);
-	HLinkListPushBack(pHead, 3);
-	HLinkListPushBack(pHead, 4);
-	PrintHLinkList(pHead);
+	DHLinkListInit(&pHead);
+	DHLinkListPushBack(pHead, 1);
+	DHLinkListPushBack(pHead, 2);
+	DHLinkListPushBack(pHead, 3);
+	DHLinkListPushBack(pHead, 4);
+	PrintLinkList(pHead);
 }
 
-void HLinkListPopBack_test()
+void DHLinkListPopBack_test()
 {
 	Node *pHead;
-	HLinkListInit(&pHead);
-	HLinkListPushBack(pHead, 1);
-	HLinkListPushBack(pHead, 2);
-	HLinkListPushBack(pHead, 3);
-	HLinkListPushBack(pHead, 4);
-	PrintHLinkList(pHead);
-	HLinkListPopBack(pHead);
-	HLinkListPopBack(pHead);
-	PrintHLinkList(pHead);
+	DHLinkListInit(&pHead);
+	DHLinkListPushBack(pHead, 1);
+	DHLinkListPushBack(pHead, 2);
+	DHLinkListPushBack(pHead, 3);
+	DHLinkListPushBack(pHead, 4);
+	PrintLinkList(pHead);
+	DHLinkListPopBack(pHead);
+	DHLinkListPopBack(pHead);
+	PrintLinkList(pHead);
 }
 
-void HLinkListPushFront_test()
+void DHLinkListPushFront_test()
 {
 	Node *pHead;
-	HLinkListInit(&pHead);
-	HLinkListPushFront(pHead, 1);
-	HLinkListPushFront(pHead, 2);
-	HLinkListPushFront(pHead, 3);
-	HLinkListPushFront(pHead, 4);
-	PrintHLinkList(pHead);
+	DHLinkListInit(&pHead);
+	DHLinkListPushFront(pHead, 1);
+	DHLinkListPushFront(pHead, 2);
+	DHLinkListPushFront(pHead, 3);
+	DHLinkListPushFront(pHead, 4);
+	PrintLinkList(pHead);
 }
 
-void HLinkListPopFront_test()
+void DHLinkListPopFront_test()
 {
 	Node *pHead;
-	HLinkListInit(&pHead);
-	HLinkListPushFront(pHead, 1);
-	HLinkListPushFront(pHead, 2);
-	HLinkListPushFront(pHead, 3);
-	HLinkListPushFront(pHead, 4);
-	PrintHLinkList(pHead);
-	HLinkListPopFront(pHead);
-	HLinkListPopFront(pHead);
-	PrintHLinkList(pHead);
-}
-
-void HLinkListDestory_test()
-{
-	Node *pHead;
-	HLinkListInit(&pHead);
-	HLinkListPushFront(pHead, 1);
-	HLinkListPushFront(pHead, 2);
-	HLinkListPushFront(pHead, 3);
-	HLinkListPushFront(pHead, 4);
-	PrintHLinkList(pHead);
-	HLinkListDestory(&pHead);
-	PrintHLinkList(pHead);
+	DHLinkListInit(&pHead);
+	DHLinkListPushFront(pHead, 1);
+	DHLinkListPushFront(pHead, 2);
+	DHLinkListPushFront(pHead, 3);
+	DHLinkListPushFront(pHead, 4);
+	PrintLinkList(pHead);
+	DHLinkListPopFront(pHead);
+	PrintLinkList(pHead);
 }
 
 int main()
 {
-	//HLinkListPushBack_test();
-	//HLinkListPopBack_test();
-	//HLinkListPushFront_test();
-	//HLinkListPopFront_test();
-	HLinkListDestory_test();
+	//DHLinkListPushBack_test();
+	//DHLinkListPopBack_test();
+	//DHLinkListPushFront_test();
+	DHLinkListPopFront_test();
 
 	return 0;
 }
