@@ -1,60 +1,28 @@
-#include"DHLinkList.h"
-
-void DHLinkListPushBack_test()
-{
-	Node *pHead;
-	DHLinkListInit(&pHead);
-	DHLinkListPushBack(pHead, 1);
-	DHLinkListPushBack(pHead, 2);
-	DHLinkListPushBack(pHead, 3);
-	DHLinkListPushBack(pHead, 4);
-	PrintLinkList(pHead);
-}
-
-void DHLinkListPopBack_test()
-{
-	Node *pHead;
-	DHLinkListInit(&pHead);
-	DHLinkListPushBack(pHead, 1);
-	DHLinkListPushBack(pHead, 2);
-	DHLinkListPushBack(pHead, 3);
-	DHLinkListPushBack(pHead, 4);
-	PrintLinkList(pHead);
-	DHLinkListPopBack(pHead);
-	DHLinkListPopBack(pHead);
-	PrintLinkList(pHead);
-}
-
-void DHLinkListPushFront_test()
-{
-	Node *pHead;
-	DHLinkListInit(&pHead);
-	DHLinkListPushFront(pHead, 1);
-	DHLinkListPushFront(pHead, 2);
-	DHLinkListPushFront(pHead, 3);
-	DHLinkListPushFront(pHead, 4);
-	PrintLinkList(pHead);
-}
-
-void DHLinkListPopFront_test()
-{
-	Node *pHead;
-	DHLinkListInit(&pHead);
-	DHLinkListPushFront(pHead, 1);
-	DHLinkListPushFront(pHead, 2);
-	DHLinkListPushFront(pHead, 3);
-	DHLinkListPushFront(pHead, 4);
-	PrintLinkList(pHead);
-	DHLinkListPopFront(pHead);
-	PrintLinkList(pHead);
-}
+#include"Queue.h"
 
 int main()
 {
-	//DHLinkListPushBack_test();
-	//DHLinkListPopBack_test();
-	//DHLinkListPushFront_test();
-	DHLinkListPopFront_test();
+	Queue q;
+	QueueInit(&q);
+	QueuePush(&q, 1);
+	QueuePush(&q, 2);
+	QueuePush(&q, 3);
+	QueuePop(&q);
+	QueuePop(&q);
+	QueuePop(&q);
+	PrintQueue(&q);
+	printf("%d\n", QueueSize(&q));
+	printf("%d\n", QueueFront(&q));
+	printf("%d\n", QueueBack(&q));
+	int ret = QueueIsEmpty(&q);
+	if (1 == ret)
+	{
+		printf("¶Ó¿Õ\n");
+	}
+	else
+	{
+		printf("¶Ó²»¿Õ\n");
+	}
 
 	return 0;
 }
