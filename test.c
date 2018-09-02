@@ -1,74 +1,32 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-#include"game.h"
+#include"ComplexLinkList.h"
 
-void menu()
+void ComplexLinkList_test()
 {
-	printf("*************************\n");
-	printf("********1. play**********\n");
-	printf("********0. error**********\n");
-	printf("*************************\n");
-}
+	Node node1, node2, node3, node4;
 
-void game()
-{
-	char arr[R+Ex][C+Ex] = { 0 };
-	char ret = 0;
-	is_Board(arr, R+Ex, C+Ex);
-	display_Board(arr, R + Ex, C + Ex);
-	while (1)
-	{
-		play_person(arr, R + Ex, C + Ex);
-		display_Board(arr, R + Ex, C + Ex);
-		ret = Judge(arr, R + Ex, C + Ex);
-		if (ret != ' ')
-		{
-			break;
-		}
-		play_computer(arr, R + Ex, C + Ex);
-		display_Board(arr, R + Ex, C + Ex);
-		ret = Judge(arr, R + Ex, C + Ex);
-		if (ret != ' ')
-		{
-			break;
-		}
-	}
-		if (ret == 'X')
-		{
-			printf("恭喜你，你赢了！\n");
-		}
-		else if(ret == 'O')
-		{
-			printf("真遗憾，你输了！\n");
-		}
-		else if (ret == 'q')
-		{
-			printf("平局！\n");
-		}
-		display_Board(arr, R + Ex, C + Ex);
-}
+	node1.data = 1;
+	node1.next = &node2;
+	node1.random = &node3;
 
+	node2.data = 2;
+	node2.next = &node3;
+	node2.random = &node1;
+
+	node3.data = 3;
+	node3.next = &node4;
+	node3.random = &node3;
+
+	node4.data = 4;
+	node4.next = NULL;
+	node4.random = NULL;
+
+	pNode ret = CopyComplexLinkList(&node1);
+
+}
 
 int main()
 {
-	int num = 0;
-	do
-	{
-		menu();
-		printf("请选择：\n");
-		scanf("%d", &num);
-		switch (num)
-		{
-		case 1:
-			game();
-			//printf("开始玩游戏！\n");
-			break;
-		case 0:
-			printf("退出游戏！！！\n");
-			break;
-		default:
-			printf("enter data error!\n");
-		}
+	ComplexLinkList_test();
 
-	}while (num);
 	return 0;
 }
