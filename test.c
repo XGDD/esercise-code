@@ -2,22 +2,19 @@
 
 void test()
 {
+	Maze m;
 	Position enter;
 	enter._x = 5;
-	enter._y = 1;
-	Maze m;
-	Stack shortPath;
-	StackInit(&shortPath);
-	int map[Row][Col] = {
-	{ 0, 0, 0, 0, 0, 0 },
-	{ 0, 1, 1, 1, 0, 0 },
-	{ 0, 1, 0, 1, 0, 0 },
-	{ 0, 1, 0, 1, 0, 0 },
-	{ 0, 1, 1, 1, 1, 1 },
-	{ 0, 1, 0, 0, 0, 0 } };
+	enter._y = 2;
+	int map[Row][Col] = { { 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 1, 0, 0, 0 },
+	{ 0, 0, 1, 0, 0, 0 },
+	{ 0, 0, 1, 1, 1, 0 },
+	{ 0, 0, 1, 0, 1, 1 },
+	{ 0, 0, 1, 0, 0, 0 } };
 	InitMaze(&m, map);
 	PrintMaze(&m);
-	PassMaze(&m, enter, &shortPath);
+	PassMaze(&m, enter);
 	PrintMaze(&m);
 }
 

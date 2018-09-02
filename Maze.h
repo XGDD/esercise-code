@@ -1,8 +1,8 @@
 #ifndef __MAZE_H__
 #define __MAZE_H__
 
-#include<stdio.h>
 #include<assert.h>
+#include<stdio.h>
 
 #define MaxSize 20
 #define Row 6
@@ -18,8 +18,8 @@ typedef Position SDataType;
 
 typedef struct Stack
 {
-	SDataType _arry[MaxSize];
 	int top;
+	SDataType _arry[MaxSize];
 }Stack;
 
 typedef struct Maze
@@ -27,19 +27,16 @@ typedef struct Maze
 	int _map[Row][Col];
 }Maze;
 
-void PrintMaze(Maze* m);
+void PassMaze(Maze* m, Position enter);
 void InitMaze(Maze* m, int map[Row][Col]);
-void PassMaze(Maze* m, Position enter, Stack* shortPath);
-void StackInit(Stack* ps);
+void PrintMaze(Maze* m);
+int IsValidEnter(Maze* m, Position enter);//是否为入口
 void StackPush(Stack* ps, SDataType data);
+void StackInit(Stack* ps);
 void StackPop(Stack* ps);
-int IsExit(Maze* m, Position pos, Position enter);
+int IsExit(Position pos, Position enter);//是否为出口
+int IsPass(Maze* m, Position pos);
 int StackEmpty(Stack* ps);
-SDataType StackTop(Stack* ps);
-int IsValidEnter(Maze* m, Position enter);
-int StackSize(Stack* ps);
-int IsPass(Maze* m, Position cur, Position next);
-void _GetMazeshortPath(Maze* m, Position cur, Position enter, Stack* Path, Stack* shortPath);
-void SaveshortPath(Stack* Path, Stack* shortPath);
+SDataType StackTop(Stack* ps);//返回栈顶元素
 
 #endif //__MAZE_H__
