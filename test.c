@@ -1,18 +1,15 @@
-#include"MatchBrackets.h"
+#include"RPN.h"
+
+void test()
+{
+	Cell RPN[] = { { Data, 12 }, { Data, 3 }, { Data, 4 }, { Add, 0 }, { Mul, 0 }, { Data, 6 }, { Sub, 0 }, { Data, 8 }, { Data, 2 }, { Div, 0 }, { Add, 0 } };
+	int size = sizeof(RPN) / sizeof(RPN[0]);
+	int ret = CalcRPN(RPN, size);
+	printf("%d\n", ret);
+}
 
 int main()
 {
-	Stack s;
-	int sz = 0;
-	StackInit(&s);
-	char a[] = "(())abc{[(])}";//左右括号次序匹配不正确
-	char b[] = "(()))abc{[]}";//右括号多于左括号
-	char c[] = "(()()abc{[]}";//左括号多于右括号
-	char d[] = "(())abc{[]()}";//左右括号匹配正确
-
-	sz = strlen(c);
-
-	MatchBrackets(&s, sz, c);
-
+	test();
 	return 0;
 }
