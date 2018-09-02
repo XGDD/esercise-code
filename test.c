@@ -1,26 +1,18 @@
-#include"Maze.h"
-
-void test()
-{
-	Maze m;
-	Position enter;
-	enter._x = 5;
-	enter._y = 2;
-	int map[Row][Col] = { { 0, 0, 0, 0, 0, 0 },
-	{ 0, 0, 1, 0, 0, 0 },
-	{ 0, 0, 1, 0, 0, 0 },
-	{ 0, 0, 1, 1, 1, 0 },
-	{ 0, 0, 1, 0, 1, 1 },
-	{ 0, 0, 1, 0, 0, 0 } };
-	InitMaze(&m, map);
-	PrintMaze(&m);
-	PassMaze(&m, enter);
-	PrintMaze(&m);
-}
+#include"MatchBrackets.h"
 
 int main()
 {
-	test();
+	Stack s;
+	int sz = 0;
+	StackInit(&s);
+	char a[] = "(())abc{[(])}";//×óÓÒÀ¨ºÅ´ÎĞòÆ¥Åä²»ÕıÈ·
+	char b[] = "(()))abc{[]}";//ÓÒÀ¨ºÅ¶àÓÚ×óÀ¨ºÅ
+	char c[] = "(()()abc{[]}";//×óÀ¨ºÅ¶àÓÚÓÒÀ¨ºÅ
+	char d[] = "(())abc{[]()}";//×óÓÒÀ¨ºÅÆ¥ÅäÕıÈ·
+
+	sz = strlen(c);
+
+	MatchBrackets(&s, sz, c);
 
 	return 0;
 }
