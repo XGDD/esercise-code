@@ -1,16 +1,29 @@
-#include"SharedStack.h"
+#include"Maze.h"
+
+void test()
+{
+	Position enter;
+	enter._x = 5;
+	enter._y = 1;
+	Maze m;
+	Stack shortPath;
+	StackInit(&shortPath);
+	int map[Row][Col] = {
+	{ 0, 0, 0, 0, 0, 0 },
+	{ 0, 1, 1, 1, 0, 0 },
+	{ 0, 1, 0, 1, 0, 0 },
+	{ 0, 1, 0, 1, 0, 0 },
+	{ 0, 1, 1, 1, 1, 1 },
+	{ 0, 1, 0, 0, 0, 0 } };
+	InitMaze(&m, map);
+	PrintMaze(&m);
+	PassMaze(&m, enter, &shortPath);
+	PrintMaze(&m);
+}
 
 int main()
 {
-	SharedStack s;
-	SharedStackInit(&s);
-	SharedStackPush(&s, 1, 1);
-	SharedStackPush(&s, 2, 1);
-
-	SharedStackPush(&s, 6, 2);
-	SharedStackPush(&s, 7, 2);
-	SharedStackPop(&s, 2);
-
+	test();
 
 	return 0;
 }
