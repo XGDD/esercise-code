@@ -1,16 +1,25 @@
-#include"SharedStack.h"
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include"Snake.h"
+
+void test()
+{
+	Snake snake = { 0 };//创建贪吃蛇
+
+	srand((unsigned int)time(NULL));
+	//游戏开始
+	GameStart(&snake);
+
+	//游戏开始跑
+	GameRun(&snake);
+
+	//游戏结束
+	GameEnd(&snake);
+}
 
 int main()
 {
-	SharedStack s;
-	SharedStackInit(&s);
-	SharedStackPush(&s, 1, 1);
-	SharedStackPush(&s, 2, 1);
-
-	SharedStackPush(&s, 6, 2);
-	SharedStackPush(&s, 7, 2);
-	SharedStackPop(&s, 2);
-
-
-	return 0;
+	test();
+	system("pause");
+  	return 0;
 }
