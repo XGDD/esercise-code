@@ -1,32 +1,213 @@
-#include"ComplexLinkList.h"
+#include"BinTree.h"
 
-void ComplexLinkList_test()
+void test()
 {
-	Node node1, node2, node3, node4;
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	int ret = 0;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
 
-	node1.data = 1;
-	node1.next = &node2;
-	node1.random = &node3;
+	BTNode* ch = NULL;
+	RightChild(pRoot,&ch,'C');
+	printf("%c\n", ch->_data);
 
-	node2.data = 2;
-	node2.next = &node3;
-	node2.random = &node1;
 
-	node3.data = 3;
-	node3.next = &node4;
-	node3.random = &node3;
+	ret = Height(pRoot);
+	printf("%d\n", ret);
 
-	node4.data = 4;
-	node4.next = NULL;
-	node4.random = NULL;
+	NewRoot = CopyBinTree(pRoot);
+	DestroyBinTree(&NewRoot);
 
-	pNode ret = CopyComplexLinkList(&node1);
+	printf("前序遍历：");
+	PreOrder(NewRoot);
+	printf("\n");
 
+	printf("中序遍历：");
+	InOrder(NewRoot);
+	printf("\n");
+
+	printf("后序遍历：");
+	PosOrder(NewRoot);
+	printf("\n");
 }
+
+void IsBTNodeInBiTree_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	int ret = 0;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	ret = IsBTNodeInBiTree(pRoot, 'G');
+	if (1 == ret)
+		printf("该结点在二叉树中\n");
+	else
+	{
+		printf("该结点不在二叉树中\n");
+	}
+}
+
+void GetBTNodeParent_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	GetBTNodeParent(pRoot, &ch, 'C');
+	printf("%c\n", ch->_data);
+}
+
+void MirrorBinTree_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+
+	printf("中序遍历：");
+	InOrder(pRoot);
+	printf("\n");
+
+	printf("后序遍历：");
+	PosOrder(pRoot);
+	printf("\n");
+
+	MirrorBinTreeNor(pRoot);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+}
+
+void LevelOrder_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+
+	printf("层序遍历：");
+	LevelOrder(pRoot);
+	printf("\n");
+}
+
+void IsCompleteBinTree_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	//BDataType str[] = "ABD###CE##F";
+	BDataType str[] = "ABD##E##CF";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+
+	int ret = IsCompleteBinTree(pRoot);
+	if (1 == ret)
+		printf("是完全二叉树\n"); 
+	else
+		printf("不是完全二叉树\n");
+}
+
+
+void PreOrderNor_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+
+	printf("非递归前序遍历：");
+	PreOrderNor(pRoot);
+	printf("\n");
+}
+
+void InOrdreNor_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("中序遍历：");
+	InOrder(pRoot);
+	printf("\n");
+
+	printf("非递归中序遍历：");
+	InOrderNor(pRoot);
+	printf("\n");
+}
+
+void PosOrdreNor_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	BDataType str[] = "ABD###CE##F";
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("后序遍历：");
+	PosOrder(pRoot);
+	printf("\n");
+
+	printf("非递归后序遍历：");
+	PosOrderNor(pRoot);
+	printf("\n");
+}
+
 
 int main()
 {
-	ComplexLinkList_test();
+	//test();
+	//IsBTNodeInBiTree_test();
+	//GetBTNodeParent_test();
+	//MirrorBinTree_test();
+	//LevelOrder_test();
+	//IsCompleteBinTree_test();
+	//RebuildBinTree_test();
+	//PreOrderNor_test();
+	//InOrdreNor_test();
+	PosOrdreNor_test();
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 
 #define MaxSize 10
 
-typedef int SDataType;
+typedef struct BTNode* SDataType;
 
 typedef struct Stack
 {

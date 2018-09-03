@@ -45,17 +45,10 @@ void QueuePop(Queue* q)
 	{
 		Del = q->Front->next;
 		q->Front->next = Del->next;
-		if (q->Front->next == q->Back)
-		{
-			q->Back = q->Front;
-			free(Del);
-			q->Front->next = NULL;
-		}
-		else
-		{
-			free(Del);
-		}
+		free(Del);
 	}
+	//if (q->Front->next == q->Back)
+	//	q->Back = q->Front;
 }
 
 QDataType QueueFront(Queue* q)
@@ -87,7 +80,7 @@ int QueueIsEmpty(Queue* q)
 {
 	{
 		assert(q);
-		if (q->Back == q->Front)//队为空，返回1
+		if (NULL == q->Front->next)//队为空，返回1
 			return 1;
 		return 0;
 	}
