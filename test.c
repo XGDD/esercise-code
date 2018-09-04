@@ -1,25 +1,31 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-
-#include"Snake.h"
-
-void test()
-{
-	Snake snake = { 0 };//创建贪吃蛇
-
-	srand((unsigned int)time(NULL));
-	//游戏开始
-	GameStart(&snake);
-
-	//游戏开始跑
-	GameRun(&snake);
-
-	//游戏结束
-	GameEnd(&snake);
-}
+#include"StackBy2Queue.h"
 
 int main()
 {
-	test();
-	system("pause");
-  	return 0;
+	StackBy2Queue q;
+	StackBy2QueueInit(&q);
+	StackBy2QueuePush(&q, 1);
+	StackBy2QueuePush(&q, 2);
+	StackBy2QueuePush(&q, 3);
+	StackBy2QueuePush(&q, 4);
+	printf("top = %d\n", StackBy2QueueTop(&q));
+	printf("size = %d\n", StackBy2QueueSize(&q));
+
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	StackBy2QueuePop(&q);
+	printf("top = %d\n", StackBy2QueueTop(&q));
+	printf("size = %d\n", StackBy2QueueSize(&q));
+	int ret = StackBy2QueueEmpty(&q);
+	if (ret == 1)
+	{
+		printf("栈为空\n");
+	}
+	else
+	{
+		printf("栈不为空\n");
+	}
+
+	return 0;
 }

@@ -5,7 +5,7 @@
 #include<assert.h>
 #include<malloc.h>
 
-typedef struct BTNode* QDataType;
+typedef int QDataType;
 
 typedef struct QListNode
 {
