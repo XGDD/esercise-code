@@ -5,7 +5,7 @@
 void InitHeap(Heap* hp)
 {
 	assert(hp);
-	hp->_compare = NULL;
+	hp->_compare = Less;
 	hp->_capacity = 3;
 	hp->_hp = (HPDataType*)malloc(hp->_capacity * (sizeof(HPDataType)));
 	if (NULL == hp->_hp)
@@ -30,7 +30,7 @@ int Great(HPDataType left, HPDataType right)
 
 int Less(HPDataType left, HPDataType right)
 {
-	return left < right;
+	return left < right; 
 }
 
 void AdjustDown(Heap* hp, int root, Compare compare)
@@ -96,10 +96,11 @@ Heap* CheckHeap(Heap* hp)
 			return;
 		}
 		memcpy(tmp, hp->_hp , hp->_size*sizeof(HPDataType));
+		free(hp->_hp);
+		hp->_hp = tmp;
+		hp->_capacity = 2 * hp->_size + 3;
+		return hp;
 	}
-	free(hp->_hp);
-	hp->_hp = tmp;
-	hp->_capacity = 2 * hp->_size + 3;
 	return hp;
 }
 
@@ -145,7 +146,7 @@ void RemoveHeap(Heap* hp, Compare compare)//删除堆顶元素
 	hp->_size--;
 	int root = (hp->_size - 1) >> 1;
 	//向下调整堆顶元素
-	while (root)
+	while (root >= 0)
 	{
 		AdjustDown(hp, root, compare);
 		root--;
