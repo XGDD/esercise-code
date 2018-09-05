@@ -1,13 +1,30 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"SortHeap.h"
+#include"HashTable.h"
 
 int main()
 {
-	Sort s;
-	HPDataType array[] = { 53, 17, 78, 9, 45, 65, 87, 23, 31 };
-	SortHeapDown(&s, array, 9);
-	Print(s.hp);
+	HT pHT;
+	InitHashTable(&pHT);
+	InsertHashTable(&pHT, 23);
+	InsertHashTable(&pHT, 33);
+	InsertHashTable(&pHT, 44);
+	InsertHashTable(&pHT, 43);
+	InsertHashTable(&pHT, 54);
+	InsertHashTable(&pHT, 3);
+	DeleteHashTable(&pHT, 33);
+	int ret = FindHashTable(&pHT, 33);
+	if (-1 != ret)
+	{
+		printf("该数在哈希表中\n");
+	}
+	else
+	{
+		printf("该数不在哈希表中\n");
+
+	}
+
+	InsertHashTable(&pHT, 33);
 
 	return 0;
 }
