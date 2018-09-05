@@ -1,22 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"BSTreeNodeKV.h"
+#include"JudgeWord.h"
 
 int main()
 {
-	BSTNKV* pRoot;
-	InitBSTNKV(&pRoot);
-	InsertBSTNKV(&pRoot, "hello", "你好");
-	InsertBSTNKV(&pRoot, "world", "世界");
-	InsertBSTNKV(&pRoot, "child", "孩子");
+	BSTKNode* pRoot;
+	InitBSTKNode(&pRoot);
+	InsertBSTKNode(&pRoot, "hello");
+	InsertBSTKNode(&pRoot, "word");
+	InsertBSTKNode(&pRoot, "child");
 
-	//DestroyBSTNKV(&pRoot);
-	DelectBSTNKV(&pRoot, "world");
-
-	printf("%s\n", FindBSTNKV(pRoot, "hello")->_data._value);
-	printf("%s\n", FindBSTNKV(pRoot, "world")->_data._value);
-
-
+	printf("%s\n", FindBSTKNode(pRoot, "hello")->_key);
+	printf("%s\p", FindBSTKNode(pRoot, "cvu")->_key);
 
 	return 0;
 }
