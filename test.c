@@ -1,13 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"topK.h"
+#include"BSTreeNodeKV.h"
 
 int main()
 {
-	topK t;
-	HPDataType array[] = { 53, 17, 78, 9, 45, 65, 87, 23, 31 };
-	int k = 5;
-	CreatetopK(&t, array, k, 9);
-	Print((t.hp));
+	BSTNKV* pRoot;
+	InitBSTNKV(&pRoot);
+	InsertBSTNKV(&pRoot, "hello", "你好");
+	InsertBSTNKV(&pRoot, "world", "世界");
+	InsertBSTNKV(&pRoot, "child", "孩子");
+
+	//DestroyBSTNKV(&pRoot);
+	DelectBSTNKV(&pRoot, "world");
+
+	printf("%s\n", FindBSTNKV(pRoot, "hello")->_data._value);
+	printf("%s\n", FindBSTNKV(pRoot, "world")->_data._value);
+
+
+
 	return 0;
 }
