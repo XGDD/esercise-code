@@ -30,7 +30,7 @@ int Great(HPDataType left, HPDataType right)
 
 int Less(HPDataType left, HPDataType right)
 {
-	return left < right; 
+	return left < right;
 }
 
 void AdjustDown(Heap* hp, int root, Compare compare)
