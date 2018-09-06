@@ -1,17 +1,14 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"JudgeWord.h"
+#include"PriorityQueue.h"
 
 int main()
 {
-	BSTKNode* pRoot;
-	InitBSTKNode(&pRoot);
-	InsertBSTKNode(&pRoot, "hello");
-	InsertBSTKNode(&pRoot, "word");
-	InsertBSTKNode(&pRoot, "child");
-
-	printf("%s\n", FindBSTKNode(pRoot, "hello")->_key);
-	printf("%s\p", FindBSTKNode(pRoot, "cvu")->_key);
-
+	PriorityQueue q;
+	InitPriorityQueue(&q);
+	PushPriorityQueue(&q, 4, (&q)->hp._compare);
+	HPDataType ret = SizePriorityQueue(&q);
+	PopPriorityQueue(&q);
+	ret = SizePriorityQueue(&q);
 	return 0;
 }
