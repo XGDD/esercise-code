@@ -1,31 +1,39 @@
 #ifndef __HASHTABLE_H__
 #define __HASHTABLE_H__
 
-#include<stdio.h>
 #include<assert.h>
+#include<stdio.h>
+#include<malloc.h>
+#include"Common.h"
 
-#define MAX_SIZE 10
-
-typedef int HTDataType;
-typedef enum{EMPTY,EXIST,DELETE}State;
-typedef struct HTElem
+typedef int HBDataType;
+typedef struct HashBucketNode
 {
-	HTDataType _data;
-	State _state;
-}HTElem;
+	struct HashBucketNode* _pNext;
+	HBDataType _data;
+}Node,*pNode;
 
-typedef struct HashTable
+typedef int(*PDTInt)(HBDataType data);
+
+typedef struct HashBucket
 {
-	HTElem _ht[MAX_SIZE];
-	int _size;//哈希表中有效元素的个数
-}HT;
+	pNode* _table;
+	int _capacity;
+	int _size;
+	PDTInt _pDTInt;
+}HashBucket;
 
-void InitHashTable(HT* pHT);
-int InsertHashTable(HT* pHT, HTDataType data);
-int DeleteHashTable(HT* pHT, HTDataType data);
-int FindHashTable(HT* pHT, HTDataType data);
-int EmptyHashTable(HT* pHT);
-int SizeHashTable(HT* pHT);
-int HashFun(HTDataType data);
+void InitHashTable(HashBucket* pHB, int capacity, PDTInt pDTInt);
+int InsertHashTable(HashBucket* pHB, HBDataType data);
+int DeleteHashTable(HashBucket* pHB, HBDataType data);
+int FindHashTable(HashBucket* pHB, HBDataType data);
+int SizeHashTable(HashBucket* pHB);
+int EmptyHashTable(HashBucket* pHB);
+void DestroyHashTable(HashBucket* pHB);
+void Print(HashBucket* pHB);
+int HashFun(HashBucket* pHB, HBDataType data);
+pNode BuyNode(HBDataType data);
+void CheckCapacity(HashBucket* pHB);
+
 
 #endif //__HASHTABLE_H__

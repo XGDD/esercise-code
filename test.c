@@ -1,28 +1,30 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"HashImTable.h"
+#include"HashTable.h"
 
 void test()
 {
-	HT ht;
-	InitHashTable(&ht, 10, DefToINT);
-	InsertHashTable(&ht, "9527", StrToINT);
-	InsertHashTable(&ht, "秋香", StrToINT);
-	InsertHashTable(&ht, "石榴姐", StrToINT);
-//	InsertHashTable(&ht, "管家", StrToINT);
-	printf("%d\n", SizeHashTable(&ht));
+	HashBucket pHB;
+	InitHashTable(&pHB, 10, DefToINT);
+	InsertHashTable(&pHB, 1);
+	InsertHashTable(&pHB, 11);
+	InsertHashTable(&pHB, 21);
+	InsertHashTable(&pHB, 23);
+	InsertHashTable(&pHB, 34);
+	InsertHashTable(&pHB, 45);
+	InsertHashTable(&pHB, 36);
+	InsertHashTable(&pHB, 78);
+	InsertHashTable(&pHB, 17);
+	InsertHashTable(&pHB, 19);
+	Print(&pHB);
 
-	if (FindHashTable(&ht, "石榴姐") != -1)
-		printf("是 唐伯虎点秋香中的人物\n");
-	else 
-		printf("不是 唐伯虎点秋香中的人物\n");
+	DeleteHashTable(&pHB, 11);
+	Print(&pHB);
 
-	if (FindHashTable(&ht, "轮轮") != -1)
-		printf("是 唐伯虎点秋香中的人物\n");
-	else
-		printf("不是 唐伯虎点秋香中的人物\n");
+	InsertHashTable(&pHB, 10);
+	Print(&pHB);
 
-	DestroyHashTable(&ht);
+	DestroyHashTable(&pHB);
 }
 
 int main()
