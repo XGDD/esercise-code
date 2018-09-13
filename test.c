@@ -1,30 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"HashTable.h"
+#include"BitMap.h"
 
 void test()
 {
-	HashBucket pHB;
-	InitHashTable(&pHB, 10, DefToINT);
-	InsertHashTable(&pHB, 1);
-	InsertHashTable(&pHB, 11);
-	InsertHashTable(&pHB, 21);
-	InsertHashTable(&pHB, 23);
-	InsertHashTable(&pHB, 34);
-	InsertHashTable(&pHB, 45);
-	InsertHashTable(&pHB, 36);
-	InsertHashTable(&pHB, 78);
-	InsertHashTable(&pHB, 17);
-	InsertHashTable(&pHB, 19);
-	Print(&pHB);
+	BitMap pBmp;
+	int ret = 0;
+	InitBitMap(&pBmp, 10);
+	SetMap(&pBmp, 8);
+	ret = TestBitMap(&pBmp, 8);
+	printf("%d\n", ret);
+	ReSetMap(&pBmp, 8);
+	TestBitMap(&pBmp, 8);
 
-	DeleteHashTable(&pHB, 11);
-	Print(&pHB);
-
-	InsertHashTable(&pHB, 10);
-	Print(&pHB);
-
-	DestroyHashTable(&pHB);
 }
 
 int main()
