@@ -6,15 +6,15 @@ void StackInit(Stack* ps)
 	ps->top = 0;
 }
 
-void Print(Stack* ps)
-{
-	assert(ps != NULL);
-	while (ps->top--)
-	{
-		printf("%d ", ps->_arry[ps->top]);
-	}
-	printf("\n");
-}
+//void Print(Stack* ps)
+//{
+//	assert(ps != NULL);
+//	while (ps->top--)
+//	{
+//		printf("%d ", ps->_arry[ps->top]);
+//	}
+//	printf("\n");
+//}
 
 void StackPush(Stack* ps, SDataType data)
 {

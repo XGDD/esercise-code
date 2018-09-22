@@ -19,7 +19,7 @@ void StackPush(Stack* ps, SDataType data);
 void StackPop(Stack* ps);
 int StackSize(Stack* ps);
 int StackEmpty(Stack* ps);
-void Print(Stack* ps);
+//void Print(Stack* ps);
 SDataType StackTop(Stack* ps);
 
 #endif //__STACK_H__
