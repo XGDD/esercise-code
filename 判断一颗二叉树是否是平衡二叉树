@@ -1,0 +1,182 @@
+BinTree.h
+
+#ifndef __BINTREE_H__
+#define __BINTREE_H__
+
+#include<stdio.h>
+#include<assert.h>
+#include<string.h>
+#include"Queue.h"
+#include"Stack.h"
+
+typedef char BDataType;
+
+typedef struct BTNode
+{
+	struct BTNode* _pLeft;
+	struct BTNode* _pRight;
+	BDataType _data;
+}BTNode;
+
+void CreateBinTree(BTNode** pRoot, BDataType* str, int size, int* index, BDataType invalid);
+void PreOrder(BTNode* pRoot);
+void InOrder(BTNode* pRoot);
+void PosOrder(BTNode* pRoot);
+int Height(BTNode* pRoot);
+//判断是否为平衡二叉树
+int IsAVTSTree(BTNode* pRoot);
+int abs(BTNode* pRoot);//返回左右子树的高度（绝对值）
+
+#endif //__BINTREE_H__
+
+BinTree.c
+
+#include"BinTree.h"
+
+BTNode* BuyBTNode(BDataType data)
+{
+	BTNode* NewNode = (BTNode*)malloc(sizeof(BTNode));
+	if (NULL == NewNode)
+	{
+		printf("创建结点失败！\n");
+		return;
+	}
+	else
+	{
+		NewNode->_data = data;
+		NewNode->_pLeft = NULL;
+		NewNode->_pRight = NULL;
+	}
+	return NewNode;
+}
+
+void CreateBinTree(BTNode** pRoot, BDataType* str, int size, int* index, BDataType invalid)
+{
+	assert(pRoot);
+	while ((*index) < size && str[*index] != invalid)
+	{
+		//创建根结点
+		(*pRoot) = BuyBTNode(str[*index]);
+
+		//创建左子树
+		(*index)++;
+		CreateBinTree(&(*pRoot)->_pLeft, str, size, index, invalid);
+
+		//创建右子树
+		(*index)++;
+		CreateBinTree(&(*pRoot)->_pRight, str, size, index, invalid);
+	}
+}
+
+void PreOrder(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+		return;
+	//遍历根结点
+	printf("%c ", pRoot->_data);
+
+	//遍历根结点的左子树
+	PreOrder(pRoot->_pLeft);
+
+	//遍历根结点的右子树
+	PreOrder(pRoot->_pRight);
+}
+
+void InOrder(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+		return;
+
+	//遍历根结点的左子树
+	InOrder(pRoot->_pLeft);
+
+	//遍历根结点
+	printf("%c ", pRoot->_data);
+
+	//遍历根结点的右子树
+	InOrder(pRoot->_pRight);
+}
+
+void PosOrder(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+		return;
+
+	//遍历根结点的左子树
+	PosOrder(pRoot->_pLeft);
+
+	//遍历根结点的右子树
+	PosOrder(pRoot->_pRight);
+
+	//遍历根结点
+	printf("%c ", pRoot->_data);
+}
+
+int Height(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+		return 0;
+	return Height(pRoot->_pLeft) > Height(pRoot->_pRight) ? Height(pRoot->_pLeft) + 1 : Height(pRoot->_pRight) + 1;
+}
+
+int abs(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+	{
+		assert(0);
+		return;
+	}
+	int ret = Height(pRoot->_pLeft) - Height(pRoot->_pRight);
+	if (ret >= 0)
+		return ret;
+	else
+		return 0 - ret;
+}
+
+int IsAVTSTree(BTNode* pRoot)
+{
+	if (NULL == pRoot)
+	{
+		//assert(0);
+		return 0;
+	}
+	int ret = abs(pRoot);
+	if (ret <= 1)
+	{
+		return (IsAVTSTree(pRoot->_pLeft) && IsAVTSTree(pRoot->_pRight));
+	}
+	else
+		return ret;
+}
+
+test.c
+
+#include"BinTree.h"
+
+void IsAVTSTree_test()
+{
+	BTNode* pRoot;
+	BTNode* NewRoot;
+	int ret = 0;
+	BDataType str[] = "AB##C#D#E";//不是平衡二叉树
+	//BDataType str[] = "ABD###CE##F";//是平衡二叉树
+
+	int size = strlen(&str);
+	int index = 0;
+	BTNode* ch = NULL;
+	BDataType invalid = '#';
+	CreateBinTree(&pRoot, str, size, &index, invalid);
+	printf("前序遍历：");
+	PreOrder(pRoot);
+	printf("\n");
+	ret = IsAVTSTree(pRoot);
+	if (ret <= 1)
+		printf("是平衡二叉树\n");
+	else
+		printf("不是平衡二叉树\n");
+}
+
+int main()
+{
+  IsAVLSTree_test();
+}
