@@ -1,0 +1,93 @@
+MergeSort.h
+
+#ifndef __MERGESORT_H__
+#define __MERGESORT_H__
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void MergeData(int* array, int left, int mid, int right, int* temp);
+void MergeSortNor(int* array, int size);
+void Print(int* array, int size);
+
+
+#endif //__MERGESORT_H__
+
+MergeSort.c
+
+#include"MergeSort.h"
+
+void Print(int* array, int size)
+{
+	int i = 0;
+	for (i = 0; i < size; i++)
+	{
+		printf("%d ", array[i]);
+	}
+	printf("\n");
+}
+
+void MergeData(int* array, int left, int mid, int right, int* temp)
+{
+	int begin1 = left, end1 = mid;
+	int begin2 = mid, end2 = right;//begin2不取到mid是因为中间数不用排序，只需要排它的左右
+	int index = left;
+	while (begin1 < end1 && begin2 < end2)
+	{
+		if (array[begin1] <= array[begin2])
+			temp[index++] = array[begin1++];
+		else
+			temp[index++] = array[begin2++];
+	}
+	while (begin2 < end2)
+		temp[index++] = array[begin2++];
+	while (begin1 < end1)
+		temp[index++] = array[begin1++];
+}
+
+void MergeSortNor(int* array, int size)
+{
+	int* temp = (int*)malloc(size * sizeof(int));
+	int i = 0;
+	int gap = 1;
+	int left = 0;
+	int right = 0;
+	int mid = 0;
+	while (gap < size)
+	{
+		for (i = 0; i < size; i += 2 * gap)
+		{
+			//计算左右两半部分区间
+			left = i;
+			mid = i + gap;
+			right = mid + gap;
+			//检测左右半部分区间的合法性
+			if (mid > size)
+				mid = size;
+			if (right > size)
+				right = size;
+			MergeData(array, left, mid, right, temp);
+			memcpy(array + left, temp + left, (right - left) * sizeof(int));
+		}
+		gap = gap * 2;
+	}
+	free(temp);
+	temp = NULL;
+}
+
+tets.c
+
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include"MergeSort.h"
+
+int main()
+{
+	int array[] = { 4, 0, 3, 5, 9, 7, 6, 1, 2, 8 };
+	int size = sizeof(array) / sizeof(array[0]);
+	//MergeSort(array, size);
+	MergeSortNor(array, size);
+	Print(array, size);
+	return 0;
+}
