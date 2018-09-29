@@ -1,13 +1,20 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"t.h"
+#include"RebuildBinTree.h"
 
 int main()
 {
-	//int array[] = { 2, 0, 4, 9, 3, 6, 8, 7, 1, 5 };
-	int array[] = { 2, 5, 4, 9, 3, 6, 8, 7, 1, 0 };
-	int size = sizeof(array) / sizeof(array[0]);
-	QuickSort(array, 0, size);
-	Print(array, size);
+	int index = 0;
+	BTNode* pRoot = NULL;
+	int PreOrder[] = { 1, 2, 4, 7, 3, 5, 6, 8 };
+	int InOrder[] = { 4, 7, 2, 1, 5, 3, 8, 6 };
+	pRoot = RebuildBinTree(PreOrder, InOrder, 8, &index, 0, 8);
+	preOrder(pRoot);
+	printf("\n");
+	
+	inOrder(pRoot);
+	printf("\n");
+	PosOrder(pRoot);
+
 	return 0;
 }
