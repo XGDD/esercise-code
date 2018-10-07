@@ -1,0 +1,172 @@
+#include<stdio.h>
+#include<assert.h>
+#include<malloc.h>
+#define bool int
+#define true 1
+#define false 0
+
+typedef int BSDataType;
+typedef struct BSTreeNode
+{
+	struct BSTreeNode* _pLeft;
+	struct BSTreeNode* _pRight;
+	BSDataType _data;
+}BSTNode;
+
+void InitBSTree(BSTNode** pRoot);
+bool InsertBSTree(BSTNode** pRoot, BSDataType data);
+bool InsertBSTreeNor(BSTNode** pRoot, BSDataType data);
+BSTNode* FindBSTree(BSTNode* pRoot, BSDataType data);
+//求二叉树中两个结点的最近公共祖先结点
+BSTNode* GetLastCommonAncerstor(BSTNode* pRoot, BSTNode* pNode1, BSTNode* pNode2);
+
+
+
+#include"BSTree.h"
+
+void InitBSTree(BSTNode** pRoot)
+{
+	assert(pRoot);
+	*pRoot = NULL;
+}
+
+BSTNode* BuyBSTNode(BSDataType data)
+{
+	BSTNode* newNode = (BSTNode*)malloc(sizeof(BSTNode));
+	if (NULL == newNode)
+	{
+		printf("创建节点失败\n");
+		return NULL;
+	}
+	newNode->_data = data;
+	newNode->_pLeft = NULL;
+	newNode->_pRight = NULL;
+	return newNode;
+}
+
+void InOrder(BSTNode* pRoot)
+{
+	if (NULL == pRoot)
+		return;
+	InOrder(pRoot->_pLeft);
+	printf("%d ", pRoot->_data);
+	InOrder(pRoot->_pRight);
+}
+
+bool InsertBSTree(BSTNode** pRoot, BSDataType data)
+{
+	assert(pRoot);
+	if (*pRoot == NULL)
+	{
+		(*pRoot) = BuyBSTNode(data);
+		return true;
+	}
+	else
+	{
+		BSTNode* pCur = (*pRoot);
+		BSTNode *pParent = NULL;
+		//找到插入结点的位置
+		while (pCur)
+		{
+			pParent = pCur;
+			if (pCur->_data == data)//如果当前结点=要插入的结点，则退出，因为这个元素已经存在
+			{
+				return false;
+			}
+			else if (pCur->_data > data)//如果当前结点数>要插入的数，向当前结点的左子树去找插入位置
+			{
+				pCur = pCur->_pLeft;
+			}
+			else//如果当前结点数<要插入的数，向当前结点的右子树去找插入位置
+			{
+				pCur = pCur->_pRight;
+			}
+		}
+		//插入新结点
+		if (data > pParent->_data)//如果插入的元素比它要插入位置的元素大，则要插入的元素应该是要插入位置结点的右孩子
+		{
+			pParent->_pRight = BuyBSTNode(data);
+			return true;
+		}
+		if (data < pParent->_data)//如果插入的元素比它要插入位置的元素小，则要插入的元素应该是要插入位置结点的左孩子
+		{
+			pParent->_pLeft = BuyBSTNode(data);
+			return true;
+		}
+	}
+	return false;
+}
+
+BSTNode* FindBSTree(BSTNode* pRoot, BSDataType data)
+{
+	BSTNode* pCur = NULL;
+	if (NULL == pRoot)
+		return NULL;
+	
+	pCur = pRoot;
+	while (pCur)
+	{
+		if (pCur->_data == data)
+		{
+			return pCur;
+		}
+		else if (pCur->_data > data)
+		{
+			pCur = pCur->_pLeft;
+		}
+		else
+		{
+			pCur = pCur->_pRight;
+		}
+	}
+	return NULL;
+}
+
+BSTNode* GetLastCommonAncerstor(BSTNode* pRoot, BSTNode* pNode1, BSTNode* pNode2)
+{
+	if (NULL == pRoot || NULL == pNode1 || NULL == pNode2)
+		return NULL;
+	if (pNode1->_data < pRoot->_data &&pNode2->_data > pRoot->_data ||
+		pNode1->_data > pRoot->_data &&pNode2->_data < pRoot->_data)
+		return pRoot;
+	else if (pNode1->_data < pRoot->_data &&pNode2->_data < pRoot->_data)
+		return GetLastCommonAncerstor(pRoot->_pLeft, pNode1, pNode2);
+	else
+		return GetLastCommonAncerstor(pRoot->_pRight, pNode1, pNode2);
+}
+
+
+
+
+#include"BSTree.h"
+
+int main()
+{
+	BSTNode* pRoot;
+	BSTNode* pNode1 = NULL;
+	BSTNode* pNode2 = NULL;
+	InitBSTree(&pRoot);
+	BSTNode* pHead = NULL;
+	int i = 0;
+	InsertBSTreeNor(&pRoot, 5);
+	InsertBSTreeNor(&pRoot, 3);
+	InsertBSTreeNor(&pRoot, 4);
+	InsertBSTreeNor(&pRoot, 1);
+	InsertBSTreeNor(&pRoot, 7);
+	InsertBSTreeNor(&pRoot, 8);
+	InsertBSTreeNor(&pRoot, 2);
+	InsertBSTreeNor(&pRoot, 6);
+	InsertBSTreeNor(&pRoot, 0);
+	InsertBSTreeNor(&pRoot, 9);
+
+	pNode1 = FindBSTree(pRoot, 6);
+	pNode2 = FindBSTree(pRoot, 9);
+  InOrder(pRoot);
+	printf("\n");
+  
+  pHead = GetLastCommonAncerstor(pRoot, pNode1, pNode2);
+	printf("最近的公共祖先是:%d\n", pHead->_data);
+	InOrder(pHead);
+
+	return 0;
+}
