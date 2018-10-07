@@ -17,10 +17,10 @@ typedef struct BTNode
 
 BTNode* BuyBTNode(BDataType data);
 
-//根据前序和中序遍历结果，还原二叉树
-BTNode* RebuildBinTree(BDataType* PreOrder, BDataType* InOrder, int size, int* index, int left, int right);
+//根据后序和中序遍历结果，还原二叉树
+BTNode* RebuildBinTree(BDataType* PosOrder, BDataType* InOrder, int size, int* index, int left, int right);
 void preOrder(BTNode* pRoot);
-void PosOrder(BTNode* pRoot);
+void posOrder(BTNode* pRoot);
 void inOrder(BTNode* pRoot);
 
 #endif //__REBUILDBINTREE_H__

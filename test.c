@@ -4,17 +4,18 @@
 
 int main()
 {
-	int index = 0;
+	int index = 7;
 	BTNode* pRoot = NULL;
-	int PreOrder[] = { 1, 2, 4, 7, 3, 5, 6, 8 };
+	int PosOrder[] = { 7, 4, 2, 5, 8, 6, 3, 1 };
 	int InOrder[] = { 4, 7, 2, 1, 5, 3, 8, 6 };
-	pRoot = RebuildBinTree(PreOrder, InOrder, 8, &index, 0, 8);
+	pRoot = RebuildBinTree(PosOrder, InOrder, 8, &index, 0, 8);
 	preOrder(pRoot);
 	printf("\n");
 	
 	inOrder(pRoot);
 	printf("\n");
-	PosOrder(pRoot);
+	posOrder(pRoot);
+	printf("\n");
 
 	return 0;
 }
