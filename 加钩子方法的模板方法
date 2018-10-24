@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+abstract class CaffeineBeverage{
+    final void prepareRecipe(){
+        boilwater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()){
+            addCondiments();
+        }
+    }
+    abstract void brew();
+    abstract void addCondiments();
+    void boilwater(){
+        System.out.println("Boiling Water");
+    }
+    void pourInCup(){
+        System.out.println("Pouring into cup");
+    }
+     /**     
+      * 钩子方法     
+      * 超类中通常是默认实现     
+      * 子类可以选择性的覆写此方法     
+      * @return     
+      */ 
+    boolean customerWantsCondiments(){
+        return true;
+    }
+}
+class Tea extends CaffeineBeverage{
+    void brew(){
+        System.out.println("Steepint the tea");
+    }
+    void addCondiments(){
+        System.out.println("Adding Lemon");
+    }
+}
+class Coffee extends CaffeineBeverage{
+    void brew(){
+        System.out.println("Dripping Coffee through filter");
+    }
+    void addCondiments(){
+        System.out.println("Adding Sugar and Milk");
+    }
+    /**     
+    * 子类覆写了钩子函数，实现自定义功能     
+    * @return    
+    */
+    public boolean customerWantsCondiments(){
+        String answer = getUserInput();
+        if(answer.equals("y")) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private String getUserInput(){
+        String answer = null;
+        System.out.println("您想在咖啡中加入牛奶或糖吗(y/n)?");
+        Scanner scanner = new Scanner(System.in);
+        answer = scanner.nextLine();
+        return answer;
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        CaffeineBeverage coffee = new Coffee();
+        CaffeineBeverage tea = new Tea();
+        System.out.println("Making coffee");
+        coffee.prepareRecipe();
+        System.out.println("Making tea");
+        tea.prepareRecipe();
+    }
+}
