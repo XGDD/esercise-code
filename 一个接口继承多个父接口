@@ -1,0 +1,26 @@
+interface A{
+    void printA();
+}
+interface B{
+    void printB();
+}
+interface C extends A,B{//利用接口实现多继承
+    void printC();
+}
+class Impl implements C{
+    public void printA(){
+        System.out.println('A');
+    }
+    public void printB(){
+        System.out.println('B');
+    }
+    public void printC(){
+        System.out.println('C');
+    }
+}
+public class Test{
+    public static void main(String[] args){
+       B b = new Impl();
+       b.printB();
+    }
+}
