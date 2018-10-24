@@ -1,0 +1,33 @@
+interface USB{
+    void setup();//安装USB驱动
+    void work();//进行工作
+}
+class Computer{
+    public void plugin(USB usb){//只能插USB设备
+        usb.setup();//安装
+        usb.work();//工作
+    }
+}
+class UDisk implements USB{//定义一个USB设备
+    public void setup(){
+        System.out.println("安装U盘驱动");
+    }
+    public void work(){
+        System.out.println("U盘工作");
+    }
+}
+class PrintDisk implements USB{
+    public void setup(){
+        System.out.println("安装打印设备");
+    }
+    public void work(){
+        System.out.println("打印设备工作");
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Computer computer = new Computer();
+        computer.plugin(new UDisk());
+        computer.plugin(new PrintDisk());
+    }
+}
