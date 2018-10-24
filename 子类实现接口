@@ -1,0 +1,23 @@
+interface IMessage{
+    public static final String MSG = "I am a biter";
+    public abstract void print();
+}
+interface INews{
+    public abstract String getNews();
+}
+class MessageImpl implements IMessage,INews{
+    public void print(){
+        System.out.println(IMessage.MSG);
+    }
+    public String getNews(){
+        return IMessage.MSG;//访问常量都建议加上类名称
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IMessage m = new MessageImpl();
+        m.print();
+        INews n = new MessageImpl();
+        System.out.println(n.getNews());
+    }
+}
