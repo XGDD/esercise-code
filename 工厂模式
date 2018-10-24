@@ -1,0 +1,21 @@
+interface IFruit{
+    public void eat();
+}
+class Apple implements IFruit{
+    public void eat(){
+        System.out.println("吃苹果之前要洗");
+    }
+}
+class Watermelon implements IFruit{
+    public void eat(){
+        System.out.println("吃西瓜之前需要切");
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IFruit fruit1 = new Apple();
+        IFruit fruit2 = new Watermelon();
+        fruit1.eat();
+        fruit2.eat();
+    }
+}
