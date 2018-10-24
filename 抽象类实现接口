@@ -1,0 +1,22 @@
+interface IMessage{
+    public abstract void print();
+}
+abstract class News implements IMessage{
+    public abstract void getNews();
+}
+class MessageImpl extends News{
+    public void print(){
+        System.out.println("I am a biter");
+    }
+    public void getNews(){
+        System.out.println("I am a news");
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IMessage m = new MessageImpl();
+        m.print();
+        News n = (News)m;//父接口间的转换，两个接口可以互相转换是因为有一个共同子类MessageImpl
+        n.getNews();
+    }
+}
