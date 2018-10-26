@@ -1,0 +1,9 @@
+public class Test{
+    public static void main(String[] args){
+        char[] str1 = new char[]{'h', 'e', 'l', 'l', 'o'};
+        //全部转换
+        String str2 = new String(str1);
+        //部分转换。从1位置开始，转换2个字母
+        System.out.println(new String(str1, 1, 2));
+    }
+}
