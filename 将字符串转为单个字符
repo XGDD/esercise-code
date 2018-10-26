@@ -1,0 +1,7 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = "helloworld";
+        char c = str1.charAt(1);
+        System.out.println(c);
+    }
+}
