@@ -1,0 +1,9 @@
+public class Test{
+    public static void main(String[] args){
+        byte[] data = new byte[]{1,90,46,78,4};
+        //将字节数组全部转为字符串
+        System.out.println(new String(data));
+        //将字节数组部分转为字符串
+        System.out.println(new String(data, 1, 3));
+    }
+}
