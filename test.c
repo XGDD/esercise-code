@@ -1,21 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-
-#include"RebuildBinTree.h"
+#include"os.h"
 
 int main()
 {
-	int index = 7;
-	BTNode* pRoot = NULL;
-	int PosOrder[] = { 7, 4, 2, 5, 8, 6, 3, 1 };
-	int InOrder[] = { 4, 7, 2, 1, 5, 3, 8, 6 };
-	pRoot = RebuildBinTree(PosOrder, InOrder, 8, &index, 0, 8);
-	preOrder(pRoot);
-	printf("\n");
-	
-	inOrder(pRoot);
-	printf("\n");
-	posOrder(pRoot);
-	printf("\n");
-
+	int i;
+	//char c = '0';
+	_PCB* pcb;
+	InitPcb(&pcb);
+	Screen();
+	printf("请输入你要选择的服务：");
+	//while ((c == getchar()) != EOF && c != '\n');
+	setbuf(stdin, NULL);
+	scanf("%d", &i);
+	//printf("%d\n", i);
+	Server(i, &pcb);
 	return 0;
 }
