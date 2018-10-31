@@ -1,0 +1,50 @@
+void RotateServer(_PCB** pcb)
+{
+	_PCB* pHead = NULL;
+	_PCB* pre = NULL;
+	_PCB* cur = NULL;
+	_PCB* pTail = NULL;
+	int i = 0;
+	Turn(pcb);
+	assert(pcb);
+	if (NULL == (*pcb))
+		return;
+	pre = cur = (*pcb);
+	cur->AtTime = 0;
+	pHead = (*pcb);
+	//计算完成时间
+	while (pHead)
+	{
+		cur = pHead;
+		while (cur)
+		{
+			cur->AddTime += 2;
+			cur->AtTime = pre->AtTime + cur->Time;
+			if (cur->AddTime == cur->ServerTime)
+			{
+				cur->FinishTime = cur->AtTime;
+				cur->WholeTime = cur->FinishTime - cur->ArriveTime;
+				cur->ValueWholeTime = (float)cur->WholeTime / (float)cur->ServerTime;
+			}
+			else if (cur->AddTime > cur->ServerTime)
+			{
+				cur->FinishTime = cur->AtTime - 1;
+				cur->WholeTime = cur->FinishTime - cur->ArriveTime;
+				cur->ValueWholeTime = (float)cur->WholeTime / (float)cur->ServerTime;
+				cur->AddTime -= 1;
+				cur->AtTime = cur->FinishTime;
+			}
+			pre = cur;
+			cur = cur->next;
+		}
+		pHead = FindpHead(pcb);
+	}
+	//计算开始时间
+	cur = (*pcb);//因为cur是全局变量，出了上个函数它指向了空，，需要让它重新指向链表开头
+	while (cur)
+	{
+		cur->StartTime = i;
+		i += cur->Time;
+		cur = cur->next;
+	}
+}
