@@ -1,0 +1,91 @@
+class Mutex implements Lock{//Mutex要实现Lock接口中的抽象方法
+    private Sync sync = new Sync();
+    //自定义的内部静态类
+    //---------------------------------------------------------
+    static class Sync extends AbstractQueuedSynchronizer{
+        @Override
+        protected boolean isHeldExclusively() {//判断是不是持有线程
+            return getState() == 1;
+        }
+
+        @Override
+        protected boolean tryAcquire(int arg) {//获得锁
+            if(arg != 1){
+                throw new RuntimeException("信号量不为1");
+            }//否则传进来的是1   只有传进来的是1，说明要获得锁，才会要执行下边代码试图改变状态
+            if(compareAndSetState(0,1)){//CAS不断尝试将当前状态由0改为1
+                //当前线程成功获取锁
+                setExclusiveOwnerThread(Thread.currentThread());//把当前线程id扔进去
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        protected boolean tryRelease(int arg) {//释放锁
+            if(getState() == 0){
+                throw new IllegalMonitorStateException();
+            }
+            //将当前线程id置为Null
+            setExclusiveOwnerThread(null);
+            //将它的状态改为0
+            setState(0);
+            return true;
+        }
+        Condition newCondition(){
+            return new ConditionObject();
+    }
+    }
+    //---------------------------------------------------------
+
+    //Lock接口实现的方法
+    @Override
+    public void lock() {
+        sync.acquire(1);
+    }
+
+    @Override
+    public void lockInterruptibly() throws InterruptedException {
+        sync.acquireInterruptibly(1);
+    }
+
+    @Override
+    public boolean tryLock() {
+        return sync.tryAcquire(1);
+    }
+
+    @Override
+    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+        return false;
+    }
+
+    @Override
+    public void unlock() {
+        sync.release(1);
+    }
+
+    @Override
+    public Condition newCondition() {
+        return sync.newCondition();
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Mutex mutex = new Mutex();
+        for(int i = 0; i < 10; i++){
+            Thread thread = new Thread(()->{
+                try {
+                    mutex.lock();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }finally {
+                    mutex.unlock();
+                }
+            });
+            thread.start();
+        }
+    }
+}
