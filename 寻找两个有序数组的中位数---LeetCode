@@ -1,0 +1,73 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] array = new int[m+n];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        if(nums1 == null){
+            int fast = 0;
+            int pre = 0;
+            int slow = 0;
+            while(fast < n && fast+1 < n){
+                fast = fast + 2;
+                pre = slow;
+                slow = slow + 1;
+            }
+            if(nums2[fast] == 0){
+                return ((nums2[pre] + nums2[slow])/2);
+            }else{
+                return nums2[slow];
+            }
+        }
+        else if(nums2 == null){
+            int fast = 0;
+            int pre = 0;
+            int slow = 0;
+             while(fast < m && fast+1 < m){
+                fast = fast + 2;
+                pre = slow;
+                slow = slow + 1;
+            }
+            if(nums1[fast] == 0){
+                return ((nums1[pre] + nums1[slow])/2);
+            }else{
+                return nums1[slow];
+            }
+        }
+        else{//合并两个有序数组
+            int fast = 0;
+            int pre = 0;
+            int slow = 0;
+            while(i < m && j < n){
+                if(nums1[i] < nums2[j]){
+                    array[k++] = nums1[i++];
+                }else{
+                    array[k++] = nums2[j++];
+                }
+            }
+            if(i == m){
+                while(j != n){
+                    array[k++] = nums2[j++];
+                }
+            }else if(j == n){
+                while(i != m){
+                    array[k++] = nums1[i++];
+                }
+            }
+            int size = array.length;
+            //对新数组求中位数
+            while(fast < size && fast+1 < size){
+                fast = fast + 2;
+                pre = slow;
+                slow = slow + 1;
+            }
+            if(fast == size){
+                return ((float)(array[pre] + array[slow])/2);
+            }else{
+                return array[slow];
+            }
+        }
+    }
+}
